@@ -18,22 +18,25 @@ public class CurrencyAPI {
 
 
 
-    public CurrencyAPI(String apiKey, String currencyFrom, String currencyTo) {
-        this.apiKey = apiKey;
-        this.currencyFrom = currencyFrom;
-        this.currencyTo = currencyTo;
-        this.urlStr = baseUrl + apiKey + "/pair/" + currencyFrom + "/" + currencyTo;
-    }
+        public CurrencyAPI() {
+            this.apiKey = apiKey;
+            this.currencyFrom = currencyFrom;
+            this.currencyTo = currencyTo;
+            this.urlStr = baseUrl + apiKey + "/pair/" + currencyFrom + "/" + currencyTo;
+        }
 
 
     public String getRequestResult() throws IOException {
+
         URL url = new URL(urlStr);
         HttpURLConnection request = (HttpURLConnection) url.openConnection();
         request.connect();
 
+
         JsonParser jp = new JsonParser();
         JsonElement root = jp.parse(new InputStreamReader((InputStream) request.getContent()));
         JsonObject jsonobj = root.getAsJsonObject();
+
 
         return jsonobj.get("conversion_rate").getAsString();
     }

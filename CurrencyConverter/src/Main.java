@@ -26,14 +26,14 @@ public class Main {
             displayMenu(menuCurrency);
             option = keyboard.nextInt();
             if(option != 8) {
-                processOption(option, menuCurrency, apiKey, currencyFrom, currencyTo);
+                processOption(option, menuCurrency);
             }
         } while (option != 8);
         System.out.println("Exiting....");
     }
 
-    private static void processOption(int option, List<String> menuCurrency, String apiKey, String currencyFrom, String currencyTo) throws IOException {
-        CurrencyAPI urlStr = new CurrencyAPI(apiKey, currencyFrom, currencyTo);
+    private static void processOption(int option, List<String> menuCurrency) throws IOException {
+        CurrencyAPI urlStr = new CurrencyAPI();
         Scanner keyboard = new Scanner(System.in);
         switch (option) {
 
@@ -44,14 +44,14 @@ public class Main {
                 String[] parts = selectedCurrency.split(" ");
                 String currency = parts[1];
                 System.out.println("You selected: " + currency + "\n");
-                currencyFrom = currency;
+                String currencyFrom = currency;
                 System.out.println("Please enter the number option for the second currency:");
                 int optionCurrency2 = keyboard.nextInt();
                 String selectedCurrency2 = menuCurrency.get(optionCurrency2 - 1);
                 String[] parts2 = selectedCurrency2.split(" ");
                 String currency2Value = parts2[1];
                 System.out.println("You selected: " + currency2Value + "\n");
-                currencyTo = currency2Value;
+                String currencyTo = currency2Value;
                 ;
                 String result = urlStr.getRequestResult();
                 System.out.println(result);
