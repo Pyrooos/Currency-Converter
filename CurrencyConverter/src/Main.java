@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Main {
-    private static String apiKey = "8f98c1c276b671d1e2365031";
+
 
     public static void main(String[] args) throws IOException {
         Scanner keyboard = new Scanner(System.in);
@@ -37,11 +37,11 @@ public class Main {
         switch (option) {
             case 1, 2, 3, 4, 5, 6, 7:
                 String[] selectedCurrencies = CurrencySelectionHelper.getCurrencySelection(option, menuCurrency, keyboard);
-                String currencyFrom = selectedCurrencies[0];
-                String currencyTo = selectedCurrencies[1];
-                CurrencyAPI currencyAPI = new CurrencyAPI(apiKey, currencyFrom, currencyTo);
+                String setCurrencyFrom = (selectedCurrencies[0]);
+                String setCurrencyTo = selectedCurrencies[1];
+                CurrencyAPI currencyAPI = new CurrencyAPI(setCurrencyFrom, setCurrencyTo);
                 String result = currencyAPI.getRequestResult();
-                System.out.println(currencyFrom+" to "+currencyTo+" = "+result);
+                System.out.println(setCurrencyFrom+" to "+setCurrencyTo+" = "+result);
                 break;
         }
     }

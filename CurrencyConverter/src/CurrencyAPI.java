@@ -10,16 +10,32 @@ import java.net.URL;
 
 public class CurrencyAPI {
     private static final String baseUrl = "https://v6.exchangerate-api.com/v6/";
-    private String apiKey;
+    private String apiKey="8f98c1c276b671d1e2365031";
     private String currencyFrom;
     private String currencyTo;
     private String urlStr;
 
-    public CurrencyAPI(String apiKey, String currencyFrom, String currencyTo) {
-        this.apiKey = apiKey;
+    public CurrencyAPI( String currencyFrom, String currencyTo) {
+
         this.currencyFrom = currencyFrom;
         this.currencyTo = currencyTo;
         this.urlStr = baseUrl + apiKey + "/pair/" + currencyFrom + "/" + currencyTo;
+    }
+
+    public String getCurrencyFrom() {
+        return currencyFrom;
+    }
+
+    public void setCurrencyFrom(String currencyFrom) {
+        this.currencyFrom = currencyFrom;
+    }
+
+    public String getCurrencyTo() {
+        return currencyTo;
+    }
+
+    public void setCurrencyTo(String currencyTo) {
+        this.currencyTo = currencyTo;
     }
 
     public String getRequestResult() throws IOException {
