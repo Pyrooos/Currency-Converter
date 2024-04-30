@@ -2,7 +2,6 @@ import java.util.List;
 import java.util.Scanner;
 
 public class CurrencySelectionHelper {
-
     public static String[] getCurrencySelection(int option, List<String> menuCurrency, Scanner keyboard) {
         String[] currencies = new String[2];
         String selectedCurrency = menuCurrency.get(option - 1);

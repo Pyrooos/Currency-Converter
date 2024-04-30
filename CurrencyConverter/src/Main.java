@@ -5,9 +5,9 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Main {
+    private static String apiKey = "8f98c1c276b671d1e2365031";
 
     public static void main(String[] args) throws IOException {
-
         Scanner keyboard = new Scanner(System.in);
         int option;
 
@@ -25,7 +25,7 @@ public class Main {
         do {
             displayMenu(menuCurrency);
             option = keyboard.nextInt();
-            if(option != 8) {
+            if (option != 8) {
                 processOption(option, menuCurrency);
             }
         } while (option != 8);
@@ -33,16 +33,15 @@ public class Main {
     }
 
     private static void processOption(int option, List<String> menuCurrency) throws IOException {
-        CurrencyAPI urlStr = new CurrencyAPI();
         Scanner keyboard = new Scanner(System.in);
         switch (option) {
-
-            case 1,2,3,4,5,6,7:
-
+            case 1, 2, 3, 4, 5, 6, 7:
                 String[] selectedCurrencies = CurrencySelectionHelper.getCurrencySelection(option, menuCurrency, keyboard);
                 String currencyFrom = selectedCurrencies[0];
                 String currencyTo = selectedCurrencies[1];
-
+                CurrencyAPI currencyAPI = new CurrencyAPI(apiKey, currencyFrom, currencyTo);
+                String result = currencyAPI.getRequestResult();
+                System.out.println(currencyFrom+" to "+currencyTo+" = "+result);
                 break;
         }
     }
