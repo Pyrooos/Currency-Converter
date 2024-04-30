@@ -37,46 +37,28 @@ public class Main {
         Scanner keyboard = new Scanner(System.in);
         switch (option) {
 
-            case 1:
+            case 1,2,3,4,5,6,7:
 
+                String[] selectedCurrencies = CurrencySelectionHelper.getCurrencySelection(option, menuCurrency, keyboard);
+                String currencyFrom = selectedCurrencies[0];
+                String currencyTo = selectedCurrencies[1];
 
-                String selectedCurrency = menuCurrency.get(option - 1);
-                String[] parts = selectedCurrency.split(" ");
-                String currency = parts[1];
-                System.out.println("You selected: " + currency + "\n");
-                String currencyFrom = currency;
-                System.out.println("Please enter the number option for the second currency:");
-                int optionCurrency2 = keyboard.nextInt();
-                String selectedCurrency2 = menuCurrency.get(optionCurrency2 - 1);
-                String[] parts2 = selectedCurrency2.split(" ");
-                String currency2Value = parts2[1];
-                System.out.println("You selected: " + currency2Value + "\n");
-                String currencyTo = currency2Value;
-                ;
-                String result = urlStr.getRequestResult();
-                System.out.println(result);
-            case 2:
-
-
-                selectedCurrency = menuCurrency.get(option - 1);
-                parts = selectedCurrency.split(" ");
-                currency = parts[1];
-                System.out.println("You selected: " + currency + "\n");
-                currencyFrom = currency;
-                System.out.println("Please enter the number option for the second currency:");
-                optionCurrency2 = keyboard.nextInt();
-                selectedCurrency2 = menuCurrency.get(optionCurrency2 - 1);
-                parts2 = selectedCurrency2.split(" ");
-                currency2Value = parts2[1];
-                System.out.println("You selected: " + currency2Value + "\n");
-                currencyTo = currency2Value;
-
-                result = urlStr.getRequestResult();
-                System.out.println(result);
-
-
-
+                break;
         }
+    }
+    private static String[] getCurrencySelection(int option, List<String> menuCurrency, Scanner keyboard) {
+        String[] currencies = new String[2];
+        String selectedCurrency = menuCurrency.get(option - 1);
+        String[] parts = selectedCurrency.split(" ");
+        currencies[0] = parts[1];
+        System.out.println("You selected: " + currencies[0] + "\n");
+        System.out.println("Please enter the number option for the second currency:");
+        int optionCurrency2 = keyboard.nextInt();
+        String selectedCurrency2 = menuCurrency.get(optionCurrency2 - 1);
+        String[] parts2 = selectedCurrency2.split(" ");
+        currencies[1] = parts2[1];
+        System.out.println("You selected: " + currencies[1] + "\n");
+        return currencies;
     }
 
     private static void displayMenu(List<String> menuCurrency) {
