@@ -1,11 +1,13 @@
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import java.io.IOException;
 
 public class Main {
 
+
+    private static int amount;
 
     public static void main(String[] args) throws IOException {
         Scanner keyboard = new Scanner(System.in);
@@ -26,25 +28,15 @@ public class Main {
             displayMenu(menuCurrency);
             option = keyboard.nextInt();
             if (option != 8) {
-                processOption(option, menuCurrency);
+                ProcessOption processOption = new ProcessOption();
+                
+                processOption.process(option, menuCurrency, amount);
             }
         } while (option != 8);
         System.out.println("Exiting....");
     }
 
-    private static void processOption(int option, List<String> menuCurrency) throws IOException {
-        Scanner keyboard = new Scanner(System.in);
-        switch (option) {
-            case 1, 2, 3, 4, 5, 6, 7:
-                String[] selectedCurrencies = CurrencySelectionHelper.getCurrencySelection(option, menuCurrency, keyboard);
-                String setCurrencyFrom = (selectedCurrencies[0]);
-                String setCurrencyTo = selectedCurrencies[1];
-                CurrencyAPI currencyAPI = new CurrencyAPI(setCurrencyFrom, setCurrencyTo);
-                String result = currencyAPI.getRequestResult();
-                System.out.println(setCurrencyFrom+" to "+setCurrencyTo+" = "+result);
-                break;
-        }
-    }
+
 
     private static void displayMenu(List<String> menuCurrency) {
         System.out.println("*************************************\n\n             Menu\n");
